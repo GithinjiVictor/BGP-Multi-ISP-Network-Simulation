@@ -1,0 +1,16 @@
+interface GigabitEthernet0/0
+ ip address 192.168.20.1 255.255.255.0  ! Connects to Switch B
+ no shutdown
+
+interface Serial0/0/0
+ ip address 10.0.12.2 255.255.255.252   ! Link to ISP A
+ no shutdown
+
+interface Serial0/0/1
+ ip address 10.0.23.1 255.255.255.252   ! Link to ISP C
+ no shutdown
+
+router bgp 200
+ neighbor 10.0.12.1 remote-as 100
+ neighbor 10.0.23.2 remote-as 300
+ network 192.168.20.0 mask 255.255.255.0
